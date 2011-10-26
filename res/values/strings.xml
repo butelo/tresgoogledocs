@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, <a href="com.digitalnatura://www.cyrilmottier.com">Proceed!</a></string>
+    <string name="app_name">TresGoogleDocs</string>
+     <string name="nointernet">sin interneee fuckyeah!</string>
+     <string name="listafollas">Retrieving a list of Spreadsheets</string>
+
+</resources>
