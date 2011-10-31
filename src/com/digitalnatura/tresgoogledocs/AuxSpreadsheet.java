@@ -96,6 +96,19 @@ public class AuxSpreadsheet {
      
      
      String hols = response.parseAsString();
+     
+     
+	 File newTextFile = new File(Environment.getExternalStorageDirectory()+"/"+"a.json");
+     FileWriter fw = new FileWriter(newTextFile);
+     fw.write(hols);
+     fw.close();
+     
+     
+     
+     
+     
+     
+     
 //     String array = "";
 //     String hols = request.toString();
      
