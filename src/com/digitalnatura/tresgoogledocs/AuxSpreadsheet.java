@@ -78,9 +78,17 @@ public class AuxSpreadsheet {
     });
 	
 	
-	 WiseUrl url = new WiseUrl("https://spreadsheets.google.com/feeds/spreadsheets/private/full?alt=json");
+//	 WiseUrl url = new WiseUrl("https://spreadsheets.google.com/feeds/spreadsheets/private/full?alt=json");
 //	 WiseUrl url = new WiseUrl("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+	 WiseUrl url = new WiseUrl("https://spreadsheets.google.com/feeds/worksheets/tZxfWbnb54F3gYX2F8epY_A/private/full?alt=json");
+	// WiseUrl url = new WiseUrl("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+//	WiseUrl url = new WiseUrl("https://spreadsheets.google.com/feeds/list/tZxfWbnb54F3gYX2F8epY_A/od6/private/full?alt=json");
 
+
+
+	 
+	 
+	 
 	 url.title = title;
      url.title_exact = exact;
      
