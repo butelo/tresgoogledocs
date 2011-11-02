@@ -1,10 +1,24 @@
 package com.digitalnatura.tresgoogledocs;
 
+import java.io.File;
+
+
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Environment;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class ConfirmacionSpGdocs extends Activity {
+
+
+private String titulo;
+private String keyword;
+private BbddHelper helper;
+
+//	private static final Button Button = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -14,11 +28,34 @@ public class ConfirmacionSpGdocs extends Activity {
         setContentView(R.layout.confirmescaleta);
 
         
-        String titulo = this.getIntent().getExtras().get("titulo").toString();
-        String keyword = this.getIntent().getExtras().get("urlnova").toString();
+         titulo = this.getIntent().getExtras().get("titulo").toString();
+         keyword = this.getIntent().getExtras().get("urlnova").toString();
 
         
         Toast.makeText(this, "You selected: " + keyword, Toast.LENGTH_LONG).show();
+        
+        ObjetoEscaleta obxetoescaleta = new ObjetoEscaleta();
+        
+         helper = new BbddHelper(this, null, null, 0);
+		
+		Button button = (Button) findViewById(R.id.ok);
+		button.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				//
+				
+				// FileOutputStream f = new FileOutputStream(destinationFile);
+
+				
+				String _id = helper.getID();
+				helper.insertarTitulo(_id, titulo, keyword);
+				
+
+				finish();
+			}
+		});
+		
+	    
 	}
 	
 

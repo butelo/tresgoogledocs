@@ -405,11 +405,6 @@ public class ListaFollas extends ListActivity {
 			
 			
 			
-			BbddHelper helper = new BbddHelper(this, null, null, 0);
-			String _id = helper.getID();
-			helper.insertarTitulo(_id, titulo, keyword);
-		        
-			
 			
 		}
 	
