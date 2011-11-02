@@ -390,7 +390,19 @@ public class ListaFollas extends ListActivity {
 //			Object o = this.getListAdapter().getItem(position);
 			String keyword = retornojedi.get(1)[position];
 			String titulo = retornojedi.get(0)[position];
-			Toast.makeText(this, "You selected: " + keyword, Toast.LENGTH_LONG).show();
+			
+			
+			
+			
+			
+			
+			Intent i = new Intent(this, ConfirmacionSpGdocs.class);
+			// Esta información se recuperará en el objeto Bundle de onCreate
+			i.putExtra("urlnova", keyword);
+			i.putExtra("titulo", titulo);
+			
+			startActivity(i);
+			
 			
 			
 			BbddHelper helper = new BbddHelper(this, null, null, 0);

@@ -5,5 +5,7 @@
     <string name="app_name">TresGoogleDocs</string>
      <string name="nointernet">sin interneee fuckyeah!</string>
      <string name="listafollas">Retrieving a list of Spreadsheets</string>
+     <string name="confirmacion">¿Desea usar esta escaleta como base para un nuevo guion?</string>
+     <string name="ok">OK</string>
 
 </resources>

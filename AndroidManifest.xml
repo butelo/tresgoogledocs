@@ -28,6 +28,8 @@
         
 <activity android:name="com.digitalnatura.tresgoogledocs.ListaFollas"
 >
+            
+    
 
 <intent-filter>
     <category android:name="android.intent.category.DEFAULT" />
@@ -36,7 +38,9 @@
 </intent-filter>
 
 </activity>
-
+<activity android:name="com.digitalnatura.tresgoogledocs.ConfirmacionSpGdocs"
+    android:theme="@android:style/Theme.Dialog"
+/>
     
     
     </application>
