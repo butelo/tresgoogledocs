@@ -23,6 +23,8 @@ public class ConfirmacionSpGdocs extends Activity {
 private String titulo;
 private String keyword;
 private BbddHelper helper;
+private ArrayList<ObjetoEscaleta> oEscaleta;
+
 
 //	private static final Button Button = null;
 
@@ -43,7 +45,7 @@ private BbddHelper helper;
 //        ObjetoEscaleta obxetoescaleta = new ObjetoEscaleta();
         
         
-        ArrayList<ObjetoEscaleta> oEscaleta = new ArrayList<ObjetoEscaleta>();
+
         
          helper = new BbddHelper(this, null, null, 0);
 		
@@ -77,6 +79,10 @@ private BbddHelper helper;
 		 
 		private boolean renovartoken;
 
+		private Object retornojedi;
+
+		private String authToken;
+
 
 
 		@Override
@@ -93,19 +99,19 @@ private BbddHelper helper;
 		protected String doInBackground(Context... params) {
 			
 			// TODO Auto-generated method stub
-			 AuxSpreadsheet obxXestorFollas = new AuxSpreadsheet();
+			 EscaletaSps escaletas = new EscaletaSps();
 			    
-			    
+			 oEscaleta = new ArrayList<ObjetoEscaleta>();
 			    
 			    try {
 			    	
-	     	    	retornojedi= obxXestorFollas.xestorFollas(obxXestorFollas, "", authToken, null);
+			    	oEscaleta= escaletas.xestorEscaletas(escaletas, "", authToken, null);
 	     	    	 renovartoken= true;
 				} catch (IOException e) {
 					
 					// TODO Auto-generated catch block
 					renovartoken=false;
-					   handleException(e);
+//					   handleException(e);
 					   return null;
 					
 				}
@@ -139,15 +145,18 @@ private BbddHelper helper;
 			if (renovartoken){
 //				String[] array = retornojedi.get(0);
 				
-				getThis().setListAdapter(new ArrayAdapter<String>(getThis(),
-		 				android.R.layout.simple_list_item_1, retornojedi.get(0)));
+//				getThis().setListAdapter(new ArrayAdapter<String>(getThis(),
+//		 				android.R.layout.simple_list_item_1, retornojedi.get(0)));
 				
 				
 				
 				
 				
 				
-				dialog.dismiss();
+//				dialog.dismiss();
+				
+				
+				
 //				  keyword = retornojedi.get(0)[0];
 //			 dialog.dismiss();
 //			

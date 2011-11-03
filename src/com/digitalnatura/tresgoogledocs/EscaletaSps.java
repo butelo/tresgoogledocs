@@ -44,7 +44,7 @@ public class EscaletaSps {
 	
 	
 
-	List<String[]> xestorFollas(EscaletaSps xestorFollas, String title, final String token11, Boolean exact)  throws IOException {
+	ArrayList<ObjetoEscaleta> xestorEscaletas(EscaletaSps xestorFollas, String title, final String token11, Boolean exact)  throws IOException {
 	// TODO Auto-generated method stub
 	
 		
@@ -186,6 +186,7 @@ public class EscaletaSps {
      
 list.add(s);
 list.add(t);
+return null;
 
 
   
@@ -193,7 +194,7 @@ list.add(t);
      
 
 
-	return  list;
+//	return  list;
 	
 }
 	
