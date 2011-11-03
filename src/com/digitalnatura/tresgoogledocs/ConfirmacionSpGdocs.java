@@ -4,13 +4,17 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.digitalnatura.tresgoogledocs.ListaFollas.InitTask;
+
 
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -24,6 +28,7 @@ private String titulo;
 private String keyword;
 private BbddHelper helper;
 private ArrayList<ObjetoEscaleta> oEscaleta;
+//protected ProgressDialog dialog;
 
 
 //	private static final Button Button = null;
@@ -50,22 +55,29 @@ private ArrayList<ObjetoEscaleta> oEscaleta;
          helper = new BbddHelper(this, null, null, 0);
 		
 		Button button = (Button) findViewById(R.id.ok);
+		
+		
 		button.setOnClickListener(new OnClickListener() {
+
+//			private ProgressDialog dialog;
 
 			public void onClick(View v) {
 				
+				setContentView(R.layout.progreso);
+				
+			
+
+				 InitTask initTask = new InitTask();
+			     	initTask.execute(ConfirmacionSpGdocs.this);
 				
 				
 				//
 				
 				// FileOutputStream f = new FileOutputStream(destinationFile);
 
-				
-				String _id = helper.getID();
-				helper.insertarTitulo(_id, titulo, keyword);
+			
 				
 
-				finish();
 			}
 		});
 		
@@ -73,9 +85,15 @@ private ArrayList<ObjetoEscaleta> oEscaleta;
 	}
 	
 	
-	  protected class InitTask extends AsyncTask<Context, Integer, String> {
+	  protected Context getContext() {
+	// TODO Auto-generated method stub
+	return this;
+}
 
-		  private String keyword;
+
+	protected class InitTask extends AsyncTask<Context, Integer, String> {
+
+//		  private String keyword;
 		 
 		private boolean renovartoken;
 
@@ -83,14 +101,15 @@ private ArrayList<ObjetoEscaleta> oEscaleta;
 
 		private String authToken;
 
+		private String TAG= "logaendo";
+
 
 
 		@Override
 		    protected void onPreExecute() {
 			
 		
-				
-			 
+//			 
 			  
 				     
 		  }
@@ -102,22 +121,25 @@ private ArrayList<ObjetoEscaleta> oEscaleta;
 			 EscaletaSps escaletas = new EscaletaSps();
 			    
 			 oEscaleta = new ArrayList<ObjetoEscaleta>();
+			 
+			 
+			 
 			    
 			    try {
-			    	
-			    	oEscaleta= escaletas.xestorEscaletas(escaletas, "", authToken, null);
-	     	    	 renovartoken= true;
+			    	oEscaleta= escaletas.xestorEscaletas(titulo, keyword);
+//	     	    	 renovartoken= true;
 				} catch (IOException e) {
 					
 					// TODO Auto-generated catch block
-					renovartoken=false;
+//					renovartoken=false;
 //					   handleException(e);
 					   return null;
 					
 				}
 			    
 			   
-			    
+				
+//				String _id  d, titulo, keyword);
 			   
 			    
 			     return null;
@@ -137,12 +159,13 @@ private ArrayList<ObjetoEscaleta> oEscaleta;
 			
 			 
 
-			
+//			dialog.dismiss();
+			 
 		
 
 //			setListAdapter(fileList);
 			
-			if (renovartoken){
+//			if (renovartoken){
 //				String[] array = retornojedi.get(0);
 				
 //				getThis().setListAdapter(new ArrayAdapter<String>(getThis(),
@@ -151,7 +174,8 @@ private ArrayList<ObjetoEscaleta> oEscaleta;
 				
 				
 				
-				
+			finish();
+
 				
 //				dialog.dismiss();
 				
@@ -164,7 +188,7 @@ private ArrayList<ObjetoEscaleta> oEscaleta;
 //			  setContentView(R.layout.main);
 //			    TextView mResultado = (TextView)findViewById(R.id.texto);   
 //		     	  mResultado.setText("Holla "+ keyword);
-		     	  }
+//		     	  }
 //			dialog.dismiss();
 			
 		}

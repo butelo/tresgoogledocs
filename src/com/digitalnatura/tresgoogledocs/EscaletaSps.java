@@ -13,6 +13,7 @@ import java.util.List;
 
 import android.content.SharedPreferences;
 import android.os.Environment;
+import android.util.Log;
 
 import com.google.api.client.extensions.android2.AndroidHttp;
 import com.google.api.client.googleapis.GoogleHeaders;
@@ -44,10 +45,16 @@ public class EscaletaSps {
 	
 	
 
-	ArrayList<ObjetoEscaleta> xestorEscaletas(EscaletaSps xestorFollas, String title, final String token11, Boolean exact)  throws IOException {
+	private ArrayList<ObjetoEscaleta> oEscaleta;
+	private String TAG = "logaendo";
+
+
+
+	ArrayList<ObjetoEscaleta> xestorEscaletas( String title,   String keyword)  throws IOException {
 	// TODO Auto-generated method stub
 	
-		
+
+	   	 
 		
 		
 	HttpRequestFactory wiseRequestFactory;
@@ -80,19 +87,23 @@ public class EscaletaSps {
     });
 	
 	
-	 WiseUrl url = new WiseUrl("https://spreadsheets.google.com/feeds/spreadsheets/private/full?alt=json");
+//	 WiseUrl url = new WiseUrl("https://spreadsheets.google.com/feeds/spreadsheets/private/full?alt=json");
 //	 WiseUrl url = new WiseUrl("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
 //	 WiseUrl url = new WiseUrl("https://spreadsheets.google.com/feeds/worksheets/tZxfWbnb54F3gYX2F8epY_A/private/full?alt=json");
 	// WiseUrl url = new WiseUrl("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
-//	WiseUrl url = new WiseUrl("https://spreadsheets.google.com/feeds/list/tZxfWbnb54F3gYX2F8epY_A/od6/private/full?alt=json");
+	WiseUrl urld = new WiseUrl(keyword);
+	WiseUrl url = new WiseUrl("https://spreadsheets.google.com/feeds/list/"+urld.getPathParts().get(3)+"/od6/private/full?alt=json");
+	
+  	
 
 
 
-	 
+
+	 oEscaleta = new ArrayList<ObjetoEscaleta>();
 	 
 	 
 	 url.title = title;
-     url.title_exact = exact;
+//     url.title_exact = exact;
      
 
  	String id = null;
@@ -106,13 +117,13 @@ public class EscaletaSps {
      
      
      String hols = response.parseAsString();
+    
      
-     
-	 File newTextFile = new File(Environment.getExternalStorageDirectory()+"/"+"a.json");
-     FileWriter fw = new FileWriter(newTextFile);
-     fw.write(hols);
-     fw.close();
-     
+//	 File newTextFile = new File(Environment.getExternalStorageDirectory()+"/"+"b.json");
+//     FileWriter fw = new FileWriter(newTextFile);
+//     fw.write(hols);
+//     fw.close();
+//     
      
      
      
@@ -122,31 +133,38 @@ public class EscaletaSps {
 //     String array = "";
 //     String hols = request.toString();
      
-     List<String[]> list = new ArrayList<String[]>();
+//     List<String[]> list = new ArrayList<String[]>();
      JacksonFactory f = new JacksonFactory();     
      JsonParser jParser = f.createJsonParser(hols);
-     
+   
+    
      
     	 while (jParser.nextToken() != JsonToken.END_OBJECT) {
     			 while (jParser.nextToken() != JsonToken.END_OBJECT) {
     				 String fieldname = jParser.getCurrentName();	
+    				 Log.e(TAG  , fieldname+"");
     	        	 if ("openSearch$totalResults".equals(fieldname)){
     	        		 while (jParser.nextToken() != JsonToken.END_OBJECT) {
                 	            	 id1 = jParser.getText();
+                	            	
     	        		 }   					 
     				 }   				
     			 }   		
     	 }
     	 
     	 jParser.close();
-    	 int resultados = Integer.parseInt(id1);
-    	 String[] s = new String[resultados];
-    	 String[] t = new String[resultados];
+//    	 int resultados = Integer.parseInt(id1);
+    	 
+    	
+
+    	 
+    	 String[] s = new String[9];
+    	 String[] t = new String[9];
     	 
     	 JacksonFactory jf = new JacksonFactory();     
          JsonParser jParser1 = jf.createJsonParser(hols);
     	 
-    	 for (int i = 0; i < resultados; i++) {
+    	 for (int i = 0; i < 9; i++) {
     		 while (jParser1.nextToken() != JsonToken.END_OBJECT) {
     			 while (jParser1.nextToken() != JsonToken.END_OBJECT) {
     				 String fieldname = jParser1.getCurrentName();	
@@ -184,9 +202,9 @@ public class EscaletaSps {
     	 
     	 
      
-list.add(s);
-list.add(t);
-return null;
+//list.add(s);
+//list.add(t);
+return oEscaleta;
 
 
   

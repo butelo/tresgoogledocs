@@ -331,7 +331,7 @@ public class ListaFollas extends ListActivity {
 			    
 			    try {
 			    	
-	     	    	retornojedi= obxXestorFollas.xestorFollas(obxXestorFollas, "", authToken, null);
+	     	    	retornojedi= obxXestorFollas.xestorFollas( "", authToken, null);
 	     	    	 renovartoken= true;
 				} catch (IOException e) {
 					

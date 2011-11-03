@@ -13,6 +13,7 @@ import java.util.List;
 
 import android.content.SharedPreferences;
 import android.os.Environment;
+import android.util.Log;
 
 import com.google.api.client.extensions.android2.AndroidHttp;
 import com.google.api.client.googleapis.GoogleHeaders;
@@ -44,7 +45,11 @@ public class AuxSpreadsheet {
 	
 	
 
-	List<String[]> xestorFollas(AuxSpreadsheet xestorFollas, String title, final String token11, Boolean exact)  throws IOException {
+	private String TAG;
+
+
+
+	List<String[]> xestorFollas( String title, final String token11, Boolean exact)  throws IOException {
 	// TODO Auto-generated method stub
 	
 		
@@ -81,6 +86,11 @@ public class AuxSpreadsheet {
 	
 	
 	 WiseUrl url = new WiseUrl("https://spreadsheets.google.com/feeds/spreadsheets/private/full?alt=json");
+//	 String hola = url.fields;
+//	 Log.e(TAG  , hola);
+//	 WiseUrl url = new WiseUrl("https://spreadsheets.google.com/feeds/worksheets/tyfB3WopNV2lHgHOYIEc0OA/private/full?alt=json");
+
+//	 https://spreadsheets.google.com/feeds/worksheets/tyfB3WopNV2lHgHOYIEc0OA/private/full
 //	 WiseUrl url = new WiseUrl("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
 //	 WiseUrl url = new WiseUrl("https://spreadsheets.google.com/feeds/worksheets/tZxfWbnb54F3gYX2F8epY_A/private/full?alt=json");
 	// WiseUrl url = new WiseUrl("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
@@ -160,7 +170,7 @@ public class AuxSpreadsheet {
                 	            	  
     	           		 }   	
     	        		
-    				 }   	else if("content".equals(fieldname)) {
+    				 }   	else if("id".equals(fieldname)) {
     					 while (jParser1.nextToken() != JsonToken.END_OBJECT) {
         	            	 id = jParser1.getText();
         	            	 t[i] = id;
