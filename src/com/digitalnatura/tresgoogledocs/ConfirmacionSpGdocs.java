@@ -1,6 +1,8 @@
 package com.digitalnatura.tresgoogledocs;
 
 import java.io.File;
+import java.util.ArrayList;
+
 
 
 import android.app.Activity;
@@ -34,7 +36,10 @@ private BbddHelper helper;
         
         Toast.makeText(this, "You selected: " + keyword, Toast.LENGTH_LONG).show();
         
-        ObjetoEscaleta obxetoescaleta = new ObjetoEscaleta();
+//        ObjetoEscaleta obxetoescaleta = new ObjetoEscaleta();
+        
+        
+        ArrayList<ObjetoEscaleta> oEscaleta = new ArrayList<ObjetoEscaleta>();
         
          helper = new BbddHelper(this, null, null, 0);
 		
