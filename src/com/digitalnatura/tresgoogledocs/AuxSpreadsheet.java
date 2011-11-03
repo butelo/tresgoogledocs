@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import android.content.SharedPreferences;
 import android.os.Environment;
 
 import com.google.api.client.extensions.android2.AndroidHttp;
@@ -61,10 +62,11 @@ public class AuxSpreadsheet {
             
 //            client login:
 //            headers.setGoogleLogin(token11);
-            
+            SharedPreferences settings = ListaFollas.getContext().getSharedPreferences("MyPrefs", 0);
+    	    String tokenp = settings.getString("token", null);
             
 //            oauth2:
-            headers.setAuthorization("Bearer "+token11);
+            headers.setAuthorization("Bearer "+tokenp);
             
 //            headers.set("name", "xesgarcia@gmail.com");
             req.setEnableGZipContent(true);

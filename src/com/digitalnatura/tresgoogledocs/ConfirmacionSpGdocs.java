@@ -47,6 +47,9 @@ private BbddHelper helper;
 		button.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
+				
+				
+				
 				//
 				
 				// FileOutputStream f = new FileOutputStream(destinationFile);

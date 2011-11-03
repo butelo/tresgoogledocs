@@ -53,6 +53,8 @@ public class ListaFollas extends ListActivity {
 	private static final int MENU_ACCOUNTS = 0;
 	public static final int REQUEST_AUTHENTICATE = 0;
 
+	private static Context mContext;
+
 //	private static final AlertDialog dialog = null;
 	  
 
@@ -83,7 +85,7 @@ public class ListaFollas extends ListActivity {
 			// initTask.execute(this);
 			accountManager = new GoogleAccountManager(this);
 			// Logger.getLogger("com.google.api.client").setLevel(LOGGING_LEVEL);
-			
+			mContext = this;
 
 			gotAccount(false);
 			
@@ -176,6 +178,17 @@ public class ListaFollas extends ListActivity {
 	                accessProtectedResource.setAccessToken(
 	                    bundle.getString(AccountManager.KEY_AUTHTOKEN));
 	                authToken = bundle.getString(AccountManager.KEY_AUTHTOKEN);
+	                
+	                SharedPreferences settings = getSharedPreferences(PREF, 0);
+	        	    SharedPreferences.Editor editor = settings.edit();
+	        	    editor.putString("token", authToken);
+	        	    editor.commit();
+	                
+	                
+	        	    
+	                
+	                
+	                
 	                
 	                onAuthToken();
 	              }
@@ -432,6 +445,11 @@ public class ListaFollas extends ListActivity {
 	public ListActivity getThis() {
 		// TODO Auto-generated method stub
 		return this;
+	}
+	
+	public static Context getContext() {
+
+		return mContext;
 	}
 
 }
