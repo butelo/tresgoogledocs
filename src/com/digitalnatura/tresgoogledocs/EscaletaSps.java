@@ -15,6 +15,8 @@ import android.content.SharedPreferences;
 import android.os.Environment;
 import android.util.Log;
 
+//import com.digitalnatura.jsonparser.JsonParserActivity;
+//import com.digitalnatura.jsonparser.ObjetoEscaleta;
 import com.google.api.client.extensions.android2.AndroidHttp;
 import com.google.api.client.googleapis.GoogleHeaders;
 import com.google.api.client.http.GenericUrl;
@@ -45,8 +47,14 @@ public class EscaletaSps {
 	
 	
 
+	private static String LOGTAG;
 	private ArrayList<ObjetoEscaleta> oEscaleta;
 	private String TAG = "logaendo";
+	private String intext;
+	private String lugar;
+	private String dianoche;
+	private String accion;
+	private String personajes;
 
 
 
@@ -112,92 +120,68 @@ public class EscaletaSps {
      HttpResponse response = wiseRequestFactory.buildGetRequest(url).execute();
 //     HttpRequest request = wiseRequestFactory.buildGetRequest(url);
 
-     
-//     InputStream jsonresponse = response.getContent();
+
      
      
      String hols = response.parseAsString();
-    
-     
-//	 File newTextFile = new File(Environment.getExternalStorageDirectory()+"/"+"b.json");
-//     FileWriter fw = new FileWriter(newTextFile);
-//     fw.write(hols);
-//     fw.close();
-//     
      
      
      
      
-     
-     
-//     String array = "";
-//     String hols = request.toString();
-     
-//     List<String[]> list = new ArrayList<String[]>();
-     JacksonFactory f = new JacksonFactory();     
-     JsonParser jParser = f.createJsonParser(hols);
-   
-    
-     
-    	 while (jParser.nextToken() != JsonToken.END_OBJECT) {
-    			 while (jParser.nextToken() != JsonToken.END_OBJECT) {
-    				 String fieldname = jParser.getCurrentName();	
-    				 Log.e(TAG  , fieldname+"");
-    	        	 if ("openSearch$totalResults".equals(fieldname)){
-    	        		 while (jParser.nextToken() != JsonToken.END_OBJECT) {
-                	            	 id1 = jParser.getText();
-                	            	
-    	        		 }   					 
-    				 }   				
-    			 }   		
-    	 }
-    	 
-    	 jParser.close();
-//    	 int resultados = Integer.parseInt(id1);
-    	 
-    	
+     JacksonFactory f = new JacksonFactory();
 
-    	 
-    	 String[] s = new String[9];
-    	 String[] t = new String[9];
-    	 
-    	 JacksonFactory jf = new JacksonFactory();     
-         JsonParser jParser1 = jf.createJsonParser(hols);
-    	 
-    	 for (int i = 0; i < 9; i++) {
-    		 while (jParser1.nextToken() != JsonToken.END_OBJECT) {
-    			 while (jParser1.nextToken() != JsonToken.END_OBJECT) {
-    				 String fieldname = jParser1.getCurrentName();	
-    	        	 if ("title".equals(fieldname)){
-    	        		 while (jParser1.nextToken() != JsonToken.END_OBJECT) {
-                	            	 id = jParser1.getText();
-                	            	 
-                	            	 s[i] = id;
-                	            	  
-                	            	 
-                	            	  
-    	           		 }   	
-    	        		
-    				 }   	else if("content".equals(fieldname)) {
-    					 while (jParser1.nextToken() != JsonToken.END_OBJECT) {
-        	            	 id = jParser1.getText();
-        	            	 t[i] = id;
-        	            	  
-        	            	 
-        	            	  
-           		 }   	
-    					 
-    				 }
-    			 }   		
-    	 }
-//    		 list.add(id);
-//    		  array = array+id+",\n";
-    	 }
-    	 jParser1.close();
-    	 
-    	 
-    	 
-//    	 id = jParser.getText();
+		JsonParser jParser = f.createJsonParser(hols);
+		 while (jParser.nextToken() != JsonToken.END_OBJECT) {
+			 while (jParser.nextToken() != JsonToken.END_OBJECT) {
+				 String fieldname = jParser.getCurrentName();	
+				 while (jParser.nextToken() != JsonToken.END_OBJECT) {
+	        	 if ("openSearch$totalResults".equals(fieldname)){
+//	        		 while (jParser.nextToken() != JsonToken.END_OBJECT) {
+         	            	 id1 = jParser.getText();
+	        		 }   	
+	        	 if ("gsx$intext".equals(fieldname)){
+//	        		 while (jParser.nextToken() != JsonToken.END_OBJECT) {
+         	            	 intext = jParser.getText();
+	        		 }  
+	        	 if ("gsx$dianoche".equals(fieldname)){
+//	        		 while (jParser.nextToken() != JsonToken.END_OBJECT) {
+         	            	 dianoche = jParser.getText();
+	        		 }  
+	        	 if ("gsx$lugar".equals(fieldname)){
+//	        		 while (jParser.nextToken() != JsonToken.END_OBJECT) {
+         	            	 lugar = jParser.getText();
+	        		 } 
+	        	 if ("gsx$accion".equals(fieldname)){
+//	        		 while (jParser.nextToken() != JsonToken.END_OBJECT) {
+         	            	 accion = jParser.getText();
+	        		 } 
+	        	 if ("gsx$personajes".equals(fieldname)){
+//	        		 while (jParser.nextToken() != JsonToken.END_OBJECT) {
+         	            	 personajes = jParser.getText();
+	        		 } 
+	        	 
+	        	 
+	        	 
+	        	 
+				 }   				
+			 }   	
+			 
+			 
+			 if (intext!=null){
+				 oEscaleta.add(new ObjetoEscaleta(intext, dianoche, lugar, accion, personajes));
+			}
+			 
+			 }
+		 jParser.close();
+		 if (oEscaleta.size()>0){
+		 oEscaleta.remove(oEscaleta.size()-1);
+		 }
+		 Log.e(EscaletaSps.LOGTAG, "algo " + oEscaleta.size()+" "+ oEscaleta.toString());
+//	 }
+		
+    
+     
+
     	 
     	 
     	 
