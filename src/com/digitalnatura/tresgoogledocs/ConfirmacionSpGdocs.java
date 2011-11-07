@@ -144,6 +144,11 @@ private ArrayList<ObjetoEscaleta> oEscaleta;
 				
 //				String _id  d, titulo, keyword);
 			   
+
+			   String _id = helper.getID();
+
+			     helper.insertarTitulo(_id, titulo, keyword);
+			   
 			    
 			     return null;
 			     
@@ -173,7 +178,7 @@ private ArrayList<ObjetoEscaleta> oEscaleta;
 			
 	         String[] myList = new String[] {"Hello","World","Foo","Bar"};   
 	         
-	         ArrayList<String> your_array_list =  oEscaleta.get(0).toArrayList();
+	         ArrayList<String> your_array_list =  oEscaleta.get(2).toArrayList();
 //	         your_array_list.add("foo");
 //	         your_array_list.add("bar");
 	         
