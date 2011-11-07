@@ -1,5 +1,7 @@
 package com.digitalnatura.tresgoogledocs;
 
+import java.util.ArrayList;
+
 public class ObjetoEscaleta {
 
 //	String ordensec = null;
@@ -8,6 +10,7 @@ public class ObjetoEscaleta {
 	String lugar ;
 	String accion ;
 	String personajes ;
+	 ArrayList<String> arraylist;
 
 	public ObjetoEscaleta( String intext2, String dianoche2,
 			String lugar2, String accion2, String personajes2) {
@@ -78,6 +81,22 @@ public class ObjetoEscaleta {
 		return String
 				.format("ObjetoEscaleta [ intext=%s, dianoche=%s, lugar=%s, accion=%s, personajes=%s]",
 						 intext, dianoche, lugar, accion, personajes);
+	}
+
+
+
+	public ArrayList<String> toArrayList() {
+		// TODO Auto-generated method stub
+		arraylist = new ArrayList<String>();
+		arraylist.add(getIntext());
+		arraylist.add(getDianoche());
+		arraylist.add(getLugar());
+		arraylist.add(getAccion());
+		arraylist.add(getPersonajes());
+		
+		
+		
+		return arraylist;
 	}
 
 

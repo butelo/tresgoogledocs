@@ -19,11 +19,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class ConfirmacionSpGdocs extends Activity {
 
 
+public static String LOGTAG;
 private String titulo;
 private String keyword;
 private BbddHelper helper;
@@ -63,7 +65,7 @@ private ArrayList<ObjetoEscaleta> oEscaleta;
 
 			public void onClick(View v) {
 				
-				setContentView(R.layout.progreso);
+			
 				
 			
 
@@ -126,7 +128,7 @@ private ArrayList<ObjetoEscaleta> oEscaleta;
 			 
 			    
 			    try {
-			    	oEscaleta= escaletas.xestorEscaletas(titulo, keyword);
+			    	oEscaleta= escaletas.xestorEscaletas(oEscaleta, titulo, keyword);
 //	     	    	 renovartoken= true;
 				} catch (IOException e) {
 					
@@ -137,7 +139,8 @@ private ArrayList<ObjetoEscaleta> oEscaleta;
 					
 				}
 			    
-			   
+			    
+			    Log.e(ConfirmacionSpGdocs.LOGTAG, "algo " + oEscaleta.size()+" "+ oEscaleta.get(0).getLugar());
 				
 //				String _id  d, titulo, keyword);
 			   
@@ -160,8 +163,31 @@ private ArrayList<ObjetoEscaleta> oEscaleta;
 			 
 
 //			dialog.dismiss();
-			 
-		
+			
+			
+			
+//				IGUAL QUE OS CLASES DOS OBJETOS TEÑEN UN MÉTODO TOSTRING TAMÉN SE LLES PODERÍA FACER
+//			UN MÉTODO TOARRAY QUE ME DEA O ARRAY QUE NECESITO
+			
+			
+			
+	         String[] myList = new String[] {"Hello","World","Foo","Bar"};   
+	         
+	         ArrayList<String> your_array_list =  oEscaleta.get(0).toArrayList();
+//	         your_array_list.add("foo");
+//	         your_array_list.add("bar");
+	         
+	        
+
+	         
+	         ListView lv = new ListView(ConfirmacionSpGdocs.this);
+//	         lv.setAdapter(new ArrayAdapter<String>(ConfirmacionSpGdocs.this,android.R.layout.simple_list_item_1,myList));
+	         ArrayAdapter<String> arrayAdapter =       new ArrayAdapter<String>(ConfirmacionSpGdocs.this,android.R.layout.simple_list_item_1, your_array_list);
+	         lv.setAdapter(arrayAdapter);
+
+	         setContentView(lv);
+//			
+
 
 //			setListAdapter(fileList);
 			
@@ -174,7 +200,7 @@ private ArrayList<ObjetoEscaleta> oEscaleta;
 				
 				
 				
-			finish();
+//			finish();
 
 				
 //				dialog.dismiss();

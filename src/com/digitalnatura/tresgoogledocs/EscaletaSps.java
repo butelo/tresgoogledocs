@@ -48,7 +48,7 @@ public class EscaletaSps {
 	
 
 	private static String LOGTAG;
-	private ArrayList<ObjetoEscaleta> oEscaleta;
+//	private ArrayList<ObjetoEscaleta> oEscaleta;
 	private String TAG = "logaendo";
 	private String intext;
 	private String lugar;
@@ -58,7 +58,7 @@ public class EscaletaSps {
 
 
 
-	ArrayList<ObjetoEscaleta> xestorEscaletas( String title,   String keyword)  throws IOException {
+	ArrayList<ObjetoEscaleta> xestorEscaletas( ArrayList<ObjetoEscaleta> oEscaleta, String title,   String keyword)  throws IOException {
 	// TODO Auto-generated method stub
 	
 
@@ -167,16 +167,19 @@ public class EscaletaSps {
 			 }   	
 			 
 			 
+			 
+			 
 			 if (intext!=null){
 				 oEscaleta.add(new ObjetoEscaleta(intext, dianoche, lugar, accion, personajes));
 			}
 			 
 			 }
 		 jParser.close();
+		 
 		 if (oEscaleta.size()>0){
 		 oEscaleta.remove(oEscaleta.size()-1);
 		 }
-		 Log.e(EscaletaSps.LOGTAG, "algo " + oEscaleta.size()+" "+ oEscaleta.toString());
+		
 //	 }
 		
     
